@@ -1,0 +1,32 @@
+name: chat_app
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.6
+  flutter: 
+    sdk: flutter
+  flex_color_scheme: ^7.3.1
+  gap: ^3.0.1
+  getwidget: ^4.0.0
+  intl_phone_field: ^3.2.0
+  supabase_flutter: ^2.5.1
+  pinput: ^4.0.0
+  get_storage: ^2.1.1
+  icons_plus: ^5.0.0
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/gifs/
