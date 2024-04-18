@@ -19,6 +19,8 @@ dependencies:
   get_storage: ^2.1.1
   icons_plus: ^5.0.0
   timeago_flutter: ^3.6.0
+  salomon_bottom_bar: ^3.3.2
+  flutter_chat_bubble: ^2.0.2
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

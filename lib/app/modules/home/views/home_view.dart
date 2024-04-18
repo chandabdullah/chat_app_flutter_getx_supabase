@@ -1,4 +1,5 @@
 import 'package:chat_app/app/constants/constants.dart';
+import 'package:chat_app/app/routes/app_pages.dart';
 import 'package:chat_app/utils/date_formater.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -59,7 +60,11 @@ class HomeView extends GetView<HomeController> {
                   itemBuilder: (BuildContext context, int index) {
                     Conversation conversation = controller.conversations[index];
                     return ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(
+                          Routes.CHAT,
+                        );
+                      },
                       leading: GFAvatar(
                         backgroundColor: Get.theme.primaryColor.withOpacity(.2),
                         child: Text(

@@ -52,7 +52,7 @@ class OtpVerificationController extends GetxController {
           String? token = session?.accessToken;
 
           MySharedPref.setToken(token);
-          Get.offAllNamed(Routes.HOME);
+          Get.offAllNamed(Routes.TABS);
         } on AuthException catch (e) {
           print("error: $e");
 

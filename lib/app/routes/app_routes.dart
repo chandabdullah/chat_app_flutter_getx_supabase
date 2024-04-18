@@ -9,6 +9,7 @@ abstract class Routes {
   static const OTP_VERIFICATION = _Paths.OTP_VERIFICATION;
   static const TABS = _Paths.TABS;
   static const PROFILE = _Paths.PROFILE;
+  static const CHAT = _Paths.CHAT;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const OTP_VERIFICATION = '/otp-verification';
   static const TABS = '/tabs';
   static const PROFILE = '/profile';
+  static const CHAT = '/chat';
 }

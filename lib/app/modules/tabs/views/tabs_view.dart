@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../controllers/tabs_controller.dart';
 
@@ -25,31 +26,25 @@ class TabsView extends GetView<TabsController> {
 
       return Scaffold(
         body: body(),
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar: SalomonBottomBar(
           backgroundColor: Get.theme.cardColor,
-          type: BottomNavigationBarType.fixed,
           currentIndex: controller.currentIndex,
           selectedItemColor: Get.theme.primaryColor,
           unselectedItemColor: Get.theme.primaryColor.withOpacity(.5),
-          unselectedLabelStyle: TextStyle(
-            color: Get.theme.primaryColor.withOpacity(.5),
-          ),
-          iconSize: 40,
           onTap: (value) {
             controller.currentIndex = value;
             controller.update();
           },
-          elevation: 5,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(EvaIcons.message_square_outline),
-              activeIcon: Icon(EvaIcons.message_square),
-              label: "Conversations",
+          items: [
+            SalomonBottomBarItem(
+              title: const Text("Conversations"),
+              icon: const Icon(EvaIcons.message_square_outline),
+              activeIcon: const Icon(EvaIcons.message_square),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(EvaIcons.person_outline),
-              activeIcon: Icon(EvaIcons.person),
-              label: "Profile",
+            SalomonBottomBarItem(
+              title: const Text("Profile"),
+              icon: const Icon(EvaIcons.person_outline),
+              activeIcon: const Icon(EvaIcons.person),
             ),
           ],
         ),
