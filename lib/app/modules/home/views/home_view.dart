@@ -104,7 +104,7 @@ class HomeView extends GetView<HomeController> {
                         ],
                       ),
                       trailing: Text(
-                        formatTime(
+                        formatTimeForConversation(
                           conversation.lastMessageAt,
                         ),
                         style: Get.textTheme.bodySmall,

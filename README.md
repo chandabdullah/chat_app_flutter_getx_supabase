@@ -1,16 +1,16 @@
-# chat_app
+# Chat App
+## Supabase
+### GetX
 
-A new Flutter project.
+*Chat Page (Messages)*
 
-## Getting Started
+<html>
+<img src="https://github.com/chandabdullah/chat_app_flutter_getx_supabase/blob/main/assets/presentation/chat%20messages.png" height="500" alt="chat message.png"/>
+</html>
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+*Chat Page (Messages)*
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<html>
+<img src="https://github.com/chandabdullah/chat_app_flutter_getx_supabase/blob/main/assets/presentation/chat%20attachements%20(image%20&%20video).png" height="500" alt="chat message.png"/>
+</html>
