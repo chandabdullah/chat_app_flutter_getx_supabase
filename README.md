@@ -31,15 +31,15 @@ Dillinger uses a number of open source projects to work properly:
 
 
 ## Preview
-
-<html>
-*Chat Page (Messages)*
-<img src="https://github.com/chandabdullah/chat_app_flutter_getx_supabase/blob/main/assets/presentation/chat%20messages.png" height="500" alt="chat message.png"/>
-</html>
-
-
-*Chat Page (Attachments)*
-
-<html>
-<img src="https://github.com/chandabdullah/chat_app_flutter_getx_supabase/blob/main/assets/presentation/chat%20attachements%20(image%20&%20video).png" height="500" alt="chat message.png"/>
-</html>
+<table>
+  <tr>
+    <td>
+      <h3>Chat Page (Messages)</h3>
+      <img src="https://github.com/chandabdullah/chat_app_flutter_getx_supabase/blob/main/assets/presentation/chat%20messages.png" height="500" alt="chat message.png"/>
+    </td>
+    <td>
+      <h3>Chat Page (Attachments)</h3>
+      <img src="https://github.com/chandabdullah/chat_app_flutter_getx_supabase/blob/main/assets/presentation/chat%20attachements%20(image%20&%20video).png" height="500" alt="chat message.png"/>
+    </td>
+  </tr>
+</table>
