@@ -1,4 +1,5 @@
 import 'package:chat_app/app/constants/constants.dart';
+import 'package:chat_app/app/modules/chat/views/photo_viewer_view.dart';
 import 'package:chat_app/utils/date_formater.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
@@ -95,11 +96,13 @@ class ChatView extends GetView<ChatController> {
                 children: [
                   // attachment messages
                   attachmentMessage(
+                    0,
                     "https://live.staticflickr.com/4604/40427749762_85b206c870_b.jpg",
                     sentByMe: true,
                     type: AttachmentType.image,
                   ),
                   attachmentMessage(
+                    1,
                     "https://t4.ftcdn.net/jpg/02/57/75/51/360_F_257755130_JgTlcqTFxabsIKgIYLAhOFEFYmNgwyJ6.jpg",
                     sentByMe: false,
                     type: AttachmentType.video,
@@ -383,116 +386,131 @@ Let's have a quick meetup""", sentByMe: true),
   }
 
   Widget attachmentMessage(
+    int index,
     String thumbnail, {
     required bool sentByMe,
     AttachmentType? type,
   }) {
     Widget imageOrVideAttachment() {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const Gap(5),
-          Stack(
-            children: [
-              Container(
-                alignment:
-                    sentByMe == true ? Alignment.topRight : Alignment.topLeft,
-                margin: const EdgeInsets.all(0),
-                child: PhysicalShape(
-                  clipper: const ShapeBorderClipper(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(kBorderRadius),
-                        topLeft: Radius.circular(kBorderRadius),
-                        bottomRight: Radius.circular(kBorderRadius),
-                        bottomLeft: Radius.circular(0),
-                      ),
-                    ),
-                  ),
-                  elevation: 2,
-                  color: Get.theme.cardColor,
-                  shadowColor: Colors.transparent,
-                  child: Container(
-                    height: 170,
-                    width: 230,
-                    alignment: Alignment.center,
-                    constraints: BoxConstraints(
-                      maxWidth: Get.width * .75,
-                      maxHeight: Get.width * .55,
-                      // minWidth: Get.width / 2,
-                      // minHeight: Get.width / 2.5,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(kBorderRadius),
-                      image: DecorationImage(
-                        image: NetworkImage(
-                          thumbnail,
-                        ),
-                        fit: BoxFit.cover,
-                        alignment: Alignment.bottomCenter,
-                        colorFilter: const ColorFilter.mode(
-                          Colors.black26,
-                          BlendMode.multiply,
+      return GestureDetector(
+        onTap: () {
+          if (type == AttachmentType.image) {
+            Get.to(() => const PhotoViewerView(), arguments: {
+              "imageUrl": thumbnail,
+              "index": index,
+            });
+            return;
+          }
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Gap(5),
+            Stack(
+              children: [
+                Container(
+                  alignment:
+                      sentByMe == true ? Alignment.topRight : Alignment.topLeft,
+                  margin: const EdgeInsets.all(0),
+                  child: PhysicalShape(
+                    clipper: const ShapeBorderClipper(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(kBorderRadius),
+                          topLeft: Radius.circular(kBorderRadius),
+                          bottomRight: Radius.circular(kBorderRadius),
+                          bottomLeft: Radius.circular(0),
                         ),
                       ),
                     ),
-                    child: type == AttachmentType.video
-                        ? Container(
-                            decoration: BoxDecoration(
-                              color: Get.theme.scaffoldBackgroundColor,
-                              shape: BoxShape.circle,
+                    elevation: 2,
+                    color: Get.theme.cardColor,
+                    shadowColor: Colors.transparent,
+                    child: Hero(
+                      tag: "photo$index",
+                      child: Container(
+                        height: 170,
+                        width: 230,
+                        alignment: Alignment.center,
+                        constraints: BoxConstraints(
+                          maxWidth: Get.width * .75,
+                          maxHeight: Get.width * .55,
+                          // minWidth: Get.width / 2,
+                          // minHeight: Get.width / 2.5,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(kBorderRadius),
+                          image: DecorationImage(
+                            image: NetworkImage(
+                              thumbnail,
                             ),
-                            child: const Icon(
-                              Icons.play_arrow_rounded,
-                              size: 25,
-                            ),
-                          )
-                        : null,
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: kSpacing / 2,
-                left: sentByMe == true ? null : kSpacing / 2,
-                right: sentByMe == true ? kSpacing / 2 : null,
-                child: Row(
-                  mainAxisAlignment: sentByMe == true
-                      ? MainAxisAlignment.end
-                      : MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 0,
-                            vertical: 3,
-                          ),
-                          child: Text(
-                            formatTimeForMessage(
-                              DateTime(2024, 4, 12, 12, 22),
-                            ),
-                            style: Get.textTheme.bodySmall!.copyWith(
-                              color: Colors.white,
+                            fit: BoxFit.cover,
+                            alignment: Alignment.bottomCenter,
+                            colorFilter: const ColorFilter.mode(
+                              Colors.black26,
+                              BlendMode.multiply,
                             ),
                           ),
                         ),
-                        if (sentByMe == true)
-                          const Icon(
-                            Icons.done_all,
-                            color: Colors.blue,
-                            size: 20,
-                          ),
-                      ],
+                        child: type == AttachmentType.video
+                            ? Container(
+                                decoration: BoxDecoration(
+                                  color: Get.theme.scaffoldBackgroundColor,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                  Icons.play_arrow_rounded,
+                                  size: 25,
+                                ),
+                              )
+                            : null,
+                      ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const Gap(1),
-        ],
+                Positioned(
+                  bottom: kSpacing / 2,
+                  left: sentByMe == true ? null : kSpacing / 2,
+                  right: sentByMe == true ? kSpacing / 2 : null,
+                  child: Row(
+                    mainAxisAlignment: sentByMe == true
+                        ? MainAxisAlignment.end
+                        : MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 0,
+                              vertical: 3,
+                            ),
+                            child: Text(
+                              formatTimeForMessage(
+                                DateTime(2024, 4, 12, 12, 22),
+                              ),
+                              style: Get.textTheme.bodySmall!.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          if (sentByMe == true)
+                            const Icon(
+                              Icons.done_all,
+                              color: Colors.blue,
+                              size: 20,
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const Gap(1),
+          ],
+        ),
       );
     }
 
