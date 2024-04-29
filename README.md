@@ -41,5 +41,9 @@ Dillinger uses a number of open source projects to work properly:
       <h3>Chat Page (Attachments)</h3>
       <img src="https://github.com/chandabdullah/chat_app_flutter_getx_supabase/blob/main/assets/presentation/chat%20attachements%20(image%20&%20video).png" height="500" alt="chat message.png"/>
     </td>
+    <td>
+      <h3>Profile Page</h3>
+      <img src="https://github.com/chandabdullah/chat_app_flutter_getx_supabase/blob/main/assets/presentation/profile.png" height="500" alt="profile.png"/>
+    </td>
   </tr>
 </table>

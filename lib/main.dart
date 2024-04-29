@@ -21,7 +21,7 @@ void main() async {
       getPages: AppPages.routes,
       theme: FlexThemeData.light(
         scheme: FlexScheme.deepPurple,
-        scaffoldBackground: Color(0xFFF0F0F0),
+        scaffoldBackground: const Color(0xFFF0F0F0),
       ),
       darkTheme: FlexThemeData.dark(
         scheme: FlexScheme.deepPurple,
