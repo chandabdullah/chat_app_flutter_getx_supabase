@@ -8,6 +8,7 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:voice_message_package/voice_message_package.dart';
 
 import '../controllers/chat_controller.dart';
 
@@ -96,7 +97,13 @@ class ChatView extends GetView<ChatController> {
                 children: [
                   // attachment messages
                   attachmentMessage(
-                    0,
+                    3,
+                    "https://live.staticflickr.com/4604/40427749762_85b206c870_b.jpg",
+                    sentByMe: true,
+                    type: AttachmentType.audio,
+                  ),
+                  attachmentMessage(
+                    2,
                     "https://live.staticflickr.com/4604/40427749762_85b206c870_b.jpg",
                     sentByMe: true,
                     type: AttachmentType.image,
@@ -514,6 +521,59 @@ Let's have a quick meetup""", sentByMe: true),
       );
     }
 
+    Widget audioAttachment() {
+      return Column(
+        children: [
+          const Gap(5),
+          Container(
+            alignment:
+                sentByMe == true ? Alignment.topRight : Alignment.topLeft,
+            margin: const EdgeInsets.all(0),
+            child: PhysicalShape(
+              clipper: const ShapeBorderClipper(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(kBorderRadius),
+                    topLeft: Radius.circular(kBorderRadius),
+                    bottomRight: Radius.circular(kBorderRadius),
+                    bottomLeft: Radius.circular(0),
+                  ),
+                ),
+              ),
+              elevation: 2,
+              color: Get.theme.cardColor,
+              shadowColor: Colors.transparent,
+              child: VoiceMessageView(
+                activeSliderColor: Get.theme.primaryColor,
+                circlesColor: Get.theme.primaryColor,
+                controller: VoiceController(
+                  audioSrc:
+                      'https://samplelib.com/lib/preview/mp3/sample-3s.mp3',
+                  onComplete: () {
+                    print('completed');
+                  },
+                  onPause: () {
+                    print('pause');
+                  },
+                  onPlaying: () {
+                    print('playing');
+                  },
+                  onError: (err) {
+                    print('err: $err');
+                  },
+                  maxDuration: const Duration(seconds: 10),
+                  isFile: false,
+                ),
+                innerPadding: kSpacing,
+                cornerRadius: kBorderRadius,
+              ),
+            ),
+          ),
+          const Gap(1),
+        ],
+      );
+    }
+
     Widget documentAttachment() {
       return Container();
     }
@@ -523,6 +583,8 @@ Let's have a quick meetup""", sentByMe: true),
         return imageOrVideAttachment();
       case AttachmentType.video:
         return imageOrVideAttachment();
+      case AttachmentType.audio:
+        return audioAttachment();
       case AttachmentType.document:
         return documentAttachment();
       default:
@@ -534,6 +596,7 @@ Let's have a quick meetup""", sentByMe: true),
 enum AttachmentType {
   image,
   video,
+  audio,
   document,
   location,
   contact,
